@@ -2,7 +2,7 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 import unittest
-from contact import  Contact
+from model.contact import  Contact
 
 
 class TestAddContact(unittest.TestCase):
@@ -13,7 +13,7 @@ class TestAddContact(unittest.TestCase):
     def test_add_contact(self):
         wd = self.wd
         self.open_home_page(wd)
-        self.login(wd)
+        self.login(wd, "admin", "secret")
         self.open_page_for_create_contact(wd)
         self.fill_from(wd, Contact(firstname="Slaughter", middlename= "To", lastname = "Preval",nickname= "Dln",
                                    title= "RRR", company="TANDER", address= "SORMOVSKAYA",home="serious",mobile="123456",
@@ -102,12 +102,12 @@ class TestAddContact(unittest.TestCase):
     def open_page_for_create_contact(self, wd):
         wd.find_element_by_link_text("add new").click()
 
-    def login(self, wd):
+    def login(self, wd, username="admin", password="secret"):
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
+        wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("secret")
+        wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
     def open_home_page(self, wd):
