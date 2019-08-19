@@ -5,7 +5,7 @@ import pytest
 
 @pytest.fixture
 def app(request):
-    fixture = Application
+    fixture = Application()
     request.addfinalizer(fixture.destroy)
     return fixture
 
