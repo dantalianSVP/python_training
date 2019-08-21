@@ -1,7 +1,7 @@
-
 from model.group import Group
 from fixture.application import Application
 import pytest
+
 
 @pytest.fixture
 def app(request):
